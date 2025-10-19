@@ -1,0 +1,45 @@
+# 开发和调试文件
+debug/
+test/
+backup/
+*.backup
+*.bak
+
+# 临时文件
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# 日志文件
+*.log
+logs/
+
+# 编辑器配置
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 包管理
+node_modules/
+package-lock.json
+yarn.lock
+
+# 构建产物
+dist/
+build/
+
+# 用户配置（包含敏感信息）
+config.local.js
+.env.local
+api-keys.txt
+
+# 测试覆盖率
+coverage/
+.nyc_output/
+
+# Chrome 扩展打包文件
+*.crx
+*.pem
+key.pem

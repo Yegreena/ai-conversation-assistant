@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "AI对话主题助手",
+  "version": "2.0",
+  "description": "智能分析AI对话，并生成可交互的主题列表，助您轻松导航和梳理长对话。",
+  "permissions": [
+    "activeTab",
+    "scripting", 
+    "storage",
+    "tabs"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup-simple.html",
+    "default_title": "Claude思维导图助手"
+  },
+  "options_page": "settings.html",
+  "content_scripts": [
+    {
+      "matches": ["*://*.claude.ai/*"],
+      "js": ["content.js"],
+      "css": ["sidebar.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "host_permissions": [
+    "*://*.claude.ai/*",
+    "https://api.openai.com/*",
+    "https://api.anthropic.com/*", 
+    "https://api.moonshot.cn/*",
+    "http://localhost:11434/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["mermaid.min.js", "settings.html", "settings.js", "sidebar.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
