@@ -2,7 +2,9 @@
 
 一个智能的 Chrome 插件，支持 Claude.ai 和 ChatGPT，可以自动分析对话并生成交互式思维导图，帮助您轻松理解和导航复杂的对话内容。
 
-![插件截图](./screenshots/demo1.png)
+![Claude.ai截图](./screenshots/demo-claude.png)
+
+![ChatGPT截图](./screenshots/demo-gpt.png)
 
 > 截图展示了插件在右侧生成的智能主题助手界面，自动识别了对话中的主要主题并提供快速导航功能。
 
