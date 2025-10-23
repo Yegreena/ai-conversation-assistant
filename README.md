@@ -32,6 +32,7 @@
    git clone https://github.com/your-username/ai-conversation-assistant.git
    cd ai-conversation-assistant
    ```
+   或下载压缩包
 
 2. **加载到 Chrome**
    - 打开 Chrome 浏览器
@@ -185,19 +186,3 @@ cd ai-conversation-assistant
 ## 📄 许可证
 
 本项目基于 [MIT 许可证](LICENSE) 开源。
-
-## 🙏 致谢
-
-- [Claude.ai](https://claude.ai) - 优秀的 AI 对话平台
-- [Chrome Extensions API](https://developer.chrome.com/docs/extensions/) - 强大的浏览器扩展框架
-- 所有贡献者和用户的反馈
-
-## 📞 联系方式
-
-- **问题反馈**：[GitHub Issues](https://github.com/your-username/ai-conversation-assistant/issues)
-- **功能建议**：[GitHub Discussions](https://github.com/your-username/ai-conversation-assistant/discussions)
-- **邮箱联系**：your-email@example.com
-
----
-
-⭐ 如果这个项目对您有帮助，请给我们一个星标！您的支持是我们持续改进的动力。

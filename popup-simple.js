@@ -24,8 +24,12 @@ async function openSidebar() {
     try {
         const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
         
-        if (!tab.url.includes('claude.ai')) {
-            showStatus('⚠️ 请在Claude.ai页面使用此功能', 'error');
+        // 检查是否为支持的AI平台
+        const supportedPlatforms = ['claude.ai', 'chatgpt.com', 'openai.com'];
+        const isSupported = supportedPlatforms.some(platform => tab.url.includes(platform));
+        
+        if (!isSupported) {
+            showStatus('⚠️ 请在Claude.ai或ChatGPT页面使用此功能', 'error');
             return;
         }
 
@@ -42,7 +46,7 @@ async function openSidebar() {
         try {
             await chrome.tabs.sendMessage(tab.id, { action: 'ping' });
         } catch (pingError) {
-            showStatus('🔄 页面脚本未加载，请刷新Claude.ai页面后重试', 'error');
+            showStatus('🔄 页面脚本未加载，请刷新页面后重试', 'error');
             return;
         }
 
@@ -64,7 +68,7 @@ async function openSidebar() {
         // 特殊处理连接失败的情况
         if (error.message.includes('Could not establish connection') || 
             error.message.includes('Receiving end does not exist')) {
-            showStatus('🔄 页面未就绪，请刷新Claude.ai页面后重试', 'error');
+            showStatus('🔄 页面未就绪，请刷新页面后重试', 'error');
         } else {
             showStatus('❌ 打开侧边栏失败: ' + error.message, 'error');
         }
@@ -164,8 +168,13 @@ async function checkPluginStatus() {
     try {
         const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
         
-        if (tab.url.includes('claude.ai')) {
-            pluginStatusDiv.textContent += ' | ✅ Claude.ai页面';
+        // 检查是否为支持的AI平台
+        const supportedPlatforms = ['claude.ai', 'chatgpt.com', 'openai.com'];
+        const currentPlatform = supportedPlatforms.find(platform => tab.url.includes(platform));
+        
+        if (currentPlatform) {
+            const platformName = currentPlatform === 'claude.ai' ? 'Claude' : 'ChatGPT';
+            pluginStatusDiv.textContent += ` | ✅ ${platformName}页面`;
             
             // 检查content script是否已加载
             try {
@@ -176,7 +185,7 @@ async function checkPluginStatus() {
                 pluginStatusDiv.style.color = '#dc2626';
             }
         } else {
-            pluginStatusDiv.textContent += ' | ⚠️ 非Claude.ai页面';
+            pluginStatusDiv.textContent += ' | ⚠️ 非支持的AI平台';
         }
     } catch (error) {
         console.error('页面检查失败:', error);

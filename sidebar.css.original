@@ -65,20 +65,22 @@
     font-size: 14px;
     line-height: 1.5;
     color: #333;
+    overflow: hidden;
 }
 
 /* 头部样式 */
-#claude-mindmap-sidebar .sidebar-header {
+.sidebar-header {
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;
+    border-bottom: 1px solid #e5e7eb;
     background: rgba(255, 255, 255, 0.9);
     flex-shrink: 0;
 }
 
-#claude-mindmap-sidebar .header-title {
+.header-title {
     display: flex;
     align-items: center;
     font-size: 16px;
@@ -86,17 +88,17 @@
     color: #1f2937;
 }
 
-#claude-mindmap-sidebar .brain-icon {
+.brain-icon {
     margin-right: 8px;
     font-size: 18px;
 }
 
-#claude-mindmap-sidebar .header-actions {
+.header-actions {
     display: flex;
     gap: 8px;
 }
 
-#claude-mindmap-sidebar .action-btn {
+.action-btn {
     width: 32px;
     height: 32px;
     border: none;
@@ -110,17 +112,17 @@
     transition: all 0.2s ease;
 }
 
-#claude-mindmap-sidebar .action-btn:hover {
+.action-btn:hover {
     background: #f3f4f6;
     transform: scale(1.1);
 }
 
-#claude-mindmap-sidebar .action-btn:active {
+.action-btn:active {
     transform: scale(0.95);
 }
 
 /* 搜索框样式 */
-#claude-mindmap-sidebar .search-container {
+.search-container {
     padding: 12px 16px;
     border-bottom: 1px solid #e5e7eb;
     background: rgba(255, 255, 255, 0.9);
@@ -129,7 +131,7 @@
     gap: 8px;
 }
 
-#claude-mindmap-sidebar .search-input {
+.search-input {
     flex: 1;
     padding: 8px 12px;
     border: 1px solid #d1d5db;
@@ -139,12 +141,12 @@
     transition: border-color 0.2s ease;
 }
 
-#claude-mindmap-sidebar .search-input:focus {
+.search-input:focus {
     border-color: #3b82f6;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-#claude-mindmap-sidebar .search-clear {
+.search-clear {
     width: 24px;
     height: 24px;
     border: none;
@@ -159,38 +161,38 @@
     transition: all 0.2s ease;
 }
 
-#claude-mindmap-sidebar .search-clear:hover {
+.search-clear:hover {
     background: #f3f4f6;
     color: #374151;
 }
 
 /* 主题容器样式 */
-#claude-mindmap-sidebar .topics-container {
+.topics-container {
     flex: 1;
     overflow-y: auto;
     padding: 16px;
     min-height: 0;
 }
 
-#claude-mindmap-sidebar .topics-container::-webkit-scrollbar {
+.topics-container::-webkit-scrollbar {
     width: 6px;
 }
 
-#claude-mindmap-sidebar .topics-container::-webkit-scrollbar-track {
+.topics-container::-webkit-scrollbar-track {
     background: transparent;
 }
 
-#claude-mindmap-sidebar .topics-container::-webkit-scrollbar-thumb {
+.topics-container::-webkit-scrollbar-thumb {
     background: #d1d5db;
     border-radius: 3px;
 }
 
-#claude-mindmap-sidebar .topics-container::-webkit-scrollbar-thumb:hover {
+.topics-container::-webkit-scrollbar-thumb:hover {
     background: #9ca3af;
 }
 
 /* 加载状态 */
-#claude-mindmap-sidebar .loading-state {
+.loading-state {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -199,7 +201,7 @@
     color: #6b7280;
 }
 
-#claude-mindmap-sidebar .loading-spinner {
+.loading-spinner {
     width: 32px;
     height: 32px;
     border: 3px solid #f3f4f6;
@@ -214,13 +216,13 @@
     100% { transform: rotate(360deg); }
 }
 
-#claude-mindmap-sidebar .loading-text {
+.loading-text {
     font-size: 14px;
     color: #6b7280;
 }
 
 /* 空状态 */
-#claude-mindmap-sidebar .empty-state {
+.empty-state {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -230,27 +232,27 @@
     color: #6b7280;
 }
 
-#claude-mindmap-sidebar .empty-icon {
+.empty-icon {
     font-size: 48px;
     margin-bottom: 16px;
     opacity: 0.5;
 }
 
-#claude-mindmap-sidebar .empty-text {
+.empty-text {
     font-size: 16px;
     font-weight: 500;
     margin-bottom: 8px;
     color: #374151;
 }
 
-#claude-mindmap-sidebar .empty-subtext {
+.empty-subtext {
     font-size: 14px;
     color: #6b7280;
     line-height: 1.4;
 }
 
 /* 简洁的主题列表样式 */
-#claude-mindmap-sidebar .topics-timeline {
+.topics-timeline {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -258,41 +260,40 @@
 }
 
 /* 失败通知样式 */
-#claude-mindmap-sidebar .failure-notification {
+.failure-notification {
     background: #fef2f2;
     border: 1px solid #fecaca;
     border-radius: 8px;
     padding: 16px;
     margin-bottom: 16px;
-    animation: fadeIn 0.3s ease-in;
 }
 
-#claude-mindmap-sidebar .failure-header {
+.failure-header {
     display: flex;
     align-items: center;
     gap: 8px;
     margin-bottom: 8px;
 }
 
-#claude-mindmap-sidebar .failure-icon {
+.failure-icon {
     font-size: 16px;
     color: #ef4444;
 }
 
-#claude-mindmap-sidebar .failure-title {
+.failure-title {
     font-weight: 600;
     color: #dc2626;
     font-size: 14px;
 }
 
-#claude-mindmap-sidebar .failure-reason {
+.failure-reason {
     font-size: 13px;
     color: #7f1d1d;
     margin-bottom: 12px;
     line-height: 1.4;
 }
 
-#claude-mindmap-sidebar .retry-btn {
+.retry-btn {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -307,67 +308,17 @@
     transition: all 0.2s ease;
 }
 
-#claude-mindmap-sidebar .retry-btn:hover {
+.retry-btn:hover {
     background: #dc2626;
     transform: translateY(-1px);
 }
 
-#claude-mindmap-sidebar .retry-btn:active {
+.retry-btn:active {
     transform: translateY(0);
 }
 
-#claude-mindmap-sidebar .retry-icon {
+.retry-icon {
     font-size: 12px;
-}
-
-/* 失败通知详情展开 */
-#claude-mindmap-sidebar .failure-details {
-    margin-top: 8px;
-    border: 1px solid #fecaca;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-#claude-mindmap-sidebar .failure-details summary {
-    padding: 8px 12px;
-    background: #fef2f2;
-    cursor: pointer;
-    font-size: 13px;
-    color: #991b1b;
-    font-weight: 500;
-    border: none;
-    outline: none;
-}
-
-#claude-mindmap-sidebar .failure-details summary:hover {
-    background: #fee2e2;
-}
-
-#claude-mindmap-sidebar .failure-technical {
-    display: block;
-    padding: 12px;
-    background: #fff5f5;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-    font-size: 11px;
-    color: #7f1d1d;
-    line-height: 1.4;
-    white-space: pre-wrap;
-    word-break: break-word;
-    border-top: 1px solid #fecaca;
-}
-
-/* 直接显示的技术详情样式 */
-#claude-mindmap-sidebar .failure-technical-direct {
-    margin-top: 12px;
-    padding: 12px;
-    background: #fff5f5;
-    border: 1px solid #fecaca;
-    border-radius: 4px;
-    font-size: 12px;
-    color: #7f1d1d;
-    line-height: 1.5;
-    white-space: pre-wrap;
-    word-break: break-word;
 }
 
 @keyframes fadeIn {
@@ -381,7 +332,7 @@
     }
 }
 
-#claude-mindmap-sidebar .topic-node {
+.topic-node {
     background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 8px;
@@ -393,13 +344,13 @@
 }
 
 /* 为问题导航节点移除左边框 */
-#claude-mindmap-sidebar .topic-node.question-node {
+.topic-node.question-node {
     border-left: none;
     padding-left: 16px; /* 适当增加左内边距以对齐 */
 }
 
 /* 简单的竖线连接 */
-#claude-mindmap-sidebar .topic-node:not(:last-child)::after {
+.topic-node:not(:last-child)::after {
     content: '';
     position: absolute;
     left: 50%;
@@ -410,63 +361,46 @@
     transform: translateX(-50%);
 }
 
-/* 6种颜色的话题类型 */
-#claude-mindmap-sidebar .topic-node[data-topic-type="concept"] {
+/* 5种颜色的话题类型 */
+.topic-node[data-topic-type="concept"] {
     border-left: 4px solid #3b82f6; /* 蓝色 - 话题1 */
 }
 
-#claude-mindmap-sidebar .topic-node[data-topic-type="technical"] {
+.topic-node[data-topic-type="technical"] {
     border-left: 4px solid #10b981; /* 绿色 - 话题2 */
 }
 
-#claude-mindmap-sidebar .topic-node[data-topic-type="analysis"] {
+.topic-node[data-topic-type="analysis"] {
     border-left: 4px solid #f97316; /* 橙色 - 话题3 */
 }
 
-#claude-mindmap-sidebar .topic-node[data-topic-type="discussion"] {
+.topic-node[data-topic-type="discussion"] {
     border-left: 4px solid #8b5cf6; /* 紫色 - 话题4 */
 }
 
-#claude-mindmap-sidebar .topic-node[data-topic-type="reference"] {
+.topic-node[data-topic-type="reference"] {
     border-left: 4px solid #ec4899; /* 粉色 - 话题5 */
 }
 
-#claude-mindmap-sidebar .topic-node[data-topic-type="creative"] {
-    border-left: 4px solid #ef4444; /* 红色 - 话题6 */
-}
-
-/* 问题导航模式特殊样式 - 统一蓝色边框 */
-#claude-mindmap-sidebar .topic-node[data-is-question-navigator="true"] {
-    border-left: 4px solid #3b82f6 !important; /* 统一蓝色边框 */
+/* 问题导航模式特殊样式 */
+.topic-node.question-navigator {
+    border-left: 4px solid #059669; /* 绿色边框 */
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-#claude-mindmap-sidebar .topic-node[data-is-question-navigator="true"]:hover {
+.topic-node.question-navigator:hover {
     background: #f0f9ff;
-    border-left-color: #2563eb !important;
+    border-left-color: #0369a1;
     transform: translateX(2px);
 }
 
-/* 向下兼容旧的class选择器 */
-#claude-mindmap-sidebar .topic-node.question-navigator {
-    border-left: 4px solid #3b82f6 !important; /* 统一蓝色边框 */
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-#claude-mindmap-sidebar .topic-node.question-navigator:hover {
-    background: #f0f9ff;
-    border-left-color: #2563eb !important;
-    transform: translateX(2px);
-}
-
-#claude-mindmap-sidebar .topic-node.question-navigator .topic-title {
+.topic-node.question-navigator .topic-title {
     color: #1f2937;
     font-weight: 500;
 }
 
-#claude-mindmap-sidebar .topic-node.question-navigator .topic-summary {
+.topic-node.question-navigator .topic-summary {
     color: #374151;
     font-size: 12px;
     line-height: 1.4;
@@ -474,12 +408,12 @@
 }
 
 /* 问题导航模式：隐藏轮数显示 */
-#claude-mindmap-sidebar .topic-node.question-navigator .topic-rounds {
+.topic-node.question-navigator .topic-rounds {
     display: none;
 }
 
 /* 主题分组分隔线 */
-#claude-mindmap-sidebar .topic-separator {
+.topic-separator {
     margin: 16px auto;
     width: 80%;
     height: 1px;
@@ -487,7 +421,7 @@
     position: relative;
 }
 
-#claude-mindmap-sidebar .topic-separator::before {
+.topic-separator::before {
     content: '';
     position: absolute;
     left: 50%;
@@ -499,16 +433,16 @@
     transform: translateX(-50%);
 }
 
-#claude-mindmap-sidebar .topic-node:hover {
+.topic-node:hover {
     background: #f9fafb;
 }
 
-#claude-mindmap-sidebar .topic-node.active {
+.topic-node.active {
     background: #f0f9ff;
     border-color: #3b82f6;
 }
 
-#claude-mindmap-sidebar .topic-node.new {
+.topic-node.new {
     animation: newNodeAppear 0.5s ease-out;
 }
 
@@ -523,25 +457,25 @@
     }
 }
 
-#claude-mindmap-sidebar .topic-header {
+.topic-header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     margin-bottom: 12px;
 }
 
-#claude-mindmap-sidebar .topic-content {
+.topic-content {
     margin-top: 8px;
 }
 
-#claude-mindmap-sidebar .topic-summary {
+.topic-summary {
     font-size: 13px;
     color: #6b7280;
     line-height: 1.5;
     margin-top: 8px;
 }
 
-#claude-mindmap-sidebar .topic-title {
+.topic-title {
     display: flex;
     align-items: center;
     font-weight: 600;
@@ -549,34 +483,14 @@
     color: #1f2937;
     flex: 1;
     line-height: 1.4;
-    cursor: pointer;
-    padding: 4px;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
 }
 
-#claude-mindmap-sidebar .topic-title:hover {
-    background-color: rgba(59, 130, 246, 0.1);
-}
-
-#claude-mindmap-sidebar .topic-icon {
+.topic-icon {
     margin-right: 8px;
     font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
 }
 
-#claude-mindmap-sidebar .topic-icon img {
-    width: 16px !important;
-    height: 16px !important;
-    display: block;
-}
-
-#claude-mindmap-sidebar .topic-toggle {
+.topic-toggle {
     width: 20px;
     height: 20px;
     border: none;
@@ -590,9 +504,11 @@
     transition: transform 0.2s ease;
 }
 
-/* 移除旋转效果，改用JavaScript控制箭头方向 */
+.topic-toggle.expanded {
+    transform: rotate(90deg);
+}
 
-#claude-mindmap-sidebar .topic-meta {
+.topic-meta {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -601,37 +517,32 @@
     flex-shrink: 0;
 }
 
-#claude-mindmap-sidebar .topic-rounds {
+.topic-rounds {
     background: #f3f4f6;
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 11px;
 }
 
-#claude-mindmap-sidebar .topic-status {
+.topic-status {
     font-size: 12px;
 }
 
 /* 展开的消息列表样式 */
-#claude-mindmap-sidebar .messages-list {
+.messages-list {
     margin-top: 8px;
-    padding: 8px 0;
-    max-height: 2000px; /* 默认展开 */
+    padding: 0;
+    max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
 }
 
-#claude-mindmap-sidebar .messages-list:not(.expanded) {
-    max-height: 0;
-    padding: 0;
-}
-
-#claude-mindmap-sidebar .messages-list.expanded {
+.messages-list.expanded {
     max-height: 2000px; /* 增加最大高度以显示所有消息 */
     padding: 8px 0;
 }
 
-#claude-mindmap-sidebar .message-item {
+.message-item {
     padding: 6px 0;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -642,7 +553,7 @@
     gap: 6px;
 }
 
-#claude-mindmap-sidebar .messages-header {
+.messages-header {
     font-size: 12px;
     font-weight: 600;
     color: #6b7280;
@@ -651,7 +562,7 @@
     margin-bottom: 8px;
 }
 
-#claude-mindmap-sidebar .message-item {
+.message-item {
     padding: 8px 12px;
     margin-bottom: 4px;
     background: #f9fafb;
@@ -660,60 +571,55 @@
     transition: all 0.2s ease;
 }
 
-#claude-mindmap-sidebar .message-item:hover {
+.message-item:hover {
     background: #f3f4f6;
     transform: translateX(2px);
 }
 
-#claude-mindmap-sidebar .message-item.current {
+.message-item.current {
     background: #dbeafe;
     font-weight: 500;
 }
 
-#claude-mindmap-sidebar .message-icon {
+.message-icon {
     font-size: 12px;
     flex-shrink: 0;
     margin-top: 2px;
 }
 
-#claude-mindmap-sidebar .message-text {
+.message-text {
     flex: 1;
     line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 /* 底部进度条 */
-#claude-mindmap-sidebar .sidebar-footer {
+.sidebar-footer {
     padding: 16px;
     border-top: 1px solid #e5e7eb;
     background: rgba(255, 255, 255, 0.9);
     flex-shrink: 0;
 }
 
-#claude-mindmap-sidebar .progress-container {
+.progress-container {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-#claude-mindmap-sidebar .progress-text {
+.progress-text {
     font-size: 12px;
     color: #6b7280;
     text-align: center;
 }
 
-#claude-mindmap-sidebar .progress-bar {
+.progress-bar {
     height: 4px;
     background: #f3f4f6;
     border-radius: 2px;
     overflow: hidden;
 }
 
-#claude-mindmap-sidebar .progress-fill {
+.progress-fill {
     height: 100%;
     background: linear-gradient(90deg, #3b82f6, #10b981);
     border-radius: 2px;
@@ -722,7 +628,7 @@
 }
 
 /* 设置菜单 */
-#claude-mindmap-sidebar .settings-menu {
+.settings-menu {
     position: absolute;
     top: 50px;
     right: 16px;
@@ -747,7 +653,7 @@
     }
 }
 
-#claude-mindmap-sidebar .settings-item {
+.settings-item {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -758,17 +664,17 @@
     color: #374151;
 }
 
-#claude-mindmap-sidebar .settings-item:hover {
+.settings-item:hover {
     background: #f3f4f6;
 }
 
-#claude-mindmap-sidebar .settings-icon {
+.settings-icon {
     font-size: 16px;
     width: 20px;
     text-align: center;
 }
 
-#claude-mindmap-sidebar .settings-separator {
+.settings-separator {
     height: 1px;
     background: #e5e7eb;
     margin: 8px 0;
@@ -776,15 +682,15 @@
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-    #claude-mindmap-sidebar .sidebar-container {
+    .sidebar-container {
         width: 100vw;
     }
     
-    #claude-mindmap-sidebar .header-title {
+    .header-title {
         font-size: 14px;
     }
     
-    #claude-mindmap-sidebar .action-btn {
+    .action-btn {
         width: 28px;
         height: 28px;
         font-size: 14px;
@@ -793,16 +699,16 @@
 
 /* 高对比度模式支持 */
 @media (prefers-contrast: high) {
-    #claude-mindmap-sidebar .sidebar-container {
+    .sidebar-container {
         background: white;
         border-left: 2px solid #000;
     }
     
-    #claude-mindmap-sidebar .topic-node {
+    .topic-node {
         border: 2px solid #000;
     }
     
-    #claude-mindmap-sidebar .topic-node.active {
+    .topic-node.active {
         border: 2px solid #f59e0b;
         background: #fff8e1;
     }
@@ -810,97 +716,103 @@
 
 /* 暗色模式支持 */
 @media (prefers-color-scheme: dark) {
-    #claude-mindmap-sidebar .sidebar-container {
+    body {
+        background: rgba(31, 41, 55, 0.95);
+        color: #f9fafb;
+    }
+    
+    .sidebar-container {
         background: rgba(31, 41, 55, 0.95);
         border-left-color: #374151;
     }
     
-    #claude-mindmap-sidebar .sidebar-header {
+    .sidebar-header {
         background: rgba(31, 41, 55, 0.9);
+        border-bottom-color: #374151;
     }
     
-    #claude-mindmap-sidebar .header-title {
+    .header-title {
         color: #f9fafb;
     }
     
-    #claude-mindmap-sidebar .action-btn:hover {
+    .action-btn:hover {
         background: #374151;
     }
     
-    #claude-mindmap-sidebar .topic-node {
+    .topic-node {
         background: rgba(55, 65, 81, 0.8);
         border-color: #4b5563;
         color: #f9fafb;
     }
     
-    #claude-mindmap-sidebar .topic-node:hover {
+    .topic-node:hover {
         background: rgba(75, 85, 99, 0.9);
         border-color: #6b7280;
     }
     
-    #claude-mindmap-sidebar .topic-title {
+    .topic-title {
         color: #f9fafb;
     }
     
-    #claude-mindmap-sidebar .topic-node.active {
+    .topic-node.active {
         background: rgba(245, 158, 11, 0.2);
         border-color: #f59e0b;
     }
     
-    #claude-mindmap-sidebar .message-item {
+    .message-item {
         color: #d1d5db;
     }
     
-    #claude-mindmap-sidebar .message-item:hover {
+    .message-item:hover {
         color: #f9fafb;
     }
     
-    #claude-mindmap-sidebar .messages-list {
+    .messages-list {
         border-left-color: #4b5563;
     }
     
-    #claude-mindmap-sidebar .search-input {
+    .search-input {
         background: #374151;
         border-color: #4b5563;
         color: #f9fafb;
     }
     
-    #claude-mindmap-sidebar .search-input:focus {
+    .search-input:focus {
         border-color: #3b82f6;
     }
     
-    #claude-mindmap-sidebar .settings-menu {
+    .settings-menu {
         background: #1f2937;
         border-color: #374151;
     }
     
-    #claude-mindmap-sidebar .settings-item {
+    .settings-item {
         color: #f9fafb;
     }
     
-    #claude-mindmap-sidebar .settings-item:hover {
+    .settings-item:hover {
         background: #374151;
     }
     
-    #claude-mindmap-sidebar .failure-notification {
+    .failure-notification {
         background: rgba(220, 38, 38, 0.1);
         border-color: rgba(220, 38, 38, 0.3);
     }
     
-    #claude-mindmap-sidebar .failure-title {
+    .failure-title {
         color: #fca5a5;
     }
     
-    #claude-mindmap-sidebar .failure-reason {
+    .failure-reason {
         color: #dc2626;
     }
     
-    #claude-mindmap-sidebar .retry-btn {
+    .retry-btn {
         background: #dc2626;
         color: #f9fafb;
     }
     
-    #claude-mindmap-sidebar .retry-btn:hover {
+    .retry-btn:hover {
         background: #b91c1c;
     }
 }

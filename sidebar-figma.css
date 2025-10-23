@@ -1,0 +1,683 @@
+/* Figma设计稿样式 */
+#claude-mindmap-sidebar.figma {
+    position: fixed;
+    top: 0;
+    right: -350px;
+    width: 350px;
+    height: 100vh;
+    z-index: 999999;
+    transition: right 0.3s ease;
+    pointer-events: none;
+}
+
+#claude-mindmap-sidebar.figma.visible {
+    right: 0;
+    pointer-events: all;
+}
+
+#claude-mindmap-sidebar.figma .sidebar-resize-handle {
+    position: absolute;
+    left: -5px;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    cursor: ew-resize;
+    background: transparent;
+}
+
+#claude-mindmap-sidebar.figma .sidebar-resize-handle:hover {
+    background: rgba(59, 130, 246, 0.3);
+}
+
+/* 本地Phosphor Icons配置 - 等待正确的字体文件 */
+/* @import url('fonts/phosphor-icons.css'); */
+
+/* 确保图标正确显示 */
+.ph {
+    font-family: 'Phosphor' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Figma模式基础样式 */
+#claude-mindmap-sidebar.figma * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#claude-mindmap-sidebar.figma body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+#claude-mindmap-sidebar.figma .sidebar-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-left: 1px solid #e5e7eb;
+}
+
+/* Figma头部样式 */
+#claude-mindmap-sidebar.figma .sidebar-header {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-bottom: none;
+    background: #ffffff;
+    flex-shrink: 0;
+}
+
+#claude-mindmap-sidebar.figma .header-title {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+#claude-mindmap-sidebar.figma .brain-icon {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+#claude-mindmap-sidebar.figma .header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+#claude-mindmap-sidebar.figma .action-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: #f8f9fa;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    color: #6b7280;
+}
+
+#claude-mindmap-sidebar.figma .action-btn:hover {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+/* 刷新按钮特定样式 */
+#claude-mindmap-sidebar.figma #mindmap-refreshBtn {
+    color: #6b7280;
+    transition: all 0.2s ease;
+}
+
+#claude-mindmap-sidebar.figma #mindmap-refreshBtn:hover {
+    color: #10b981;
+    transform: rotate(90deg);
+    background: #e5e7eb;
+}
+
+#claude-mindmap-sidebar.figma #mindmap-refreshBtn:active {
+    transform: rotate(180deg);
+}
+
+#claude-mindmap-sidebar.figma .close-btn {
+    width: 36px;
+    height: 36px;
+    background: #f8f9fa;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    color: #6b7280;
+}
+
+#claude-mindmap-sidebar.figma .close-btn:hover {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+/* Figma搜索框样式 */
+#claude-mindmap-sidebar.figma .search-container {
+    padding: 20px 24px;
+    border-bottom: 1px solid #e5e7eb;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#claude-mindmap-sidebar.figma .search-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease;
+    background: #f8f9fa;
+}
+
+#claude-mindmap-sidebar.figma .search-input:focus {
+    border-color: #3b82f6;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Figma主题容器样式 */
+#claude-mindmap-sidebar.figma .topics-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    min-height: 0;
+    background: #ffffff;
+}
+
+#claude-mindmap-sidebar.figma .topics-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+#claude-mindmap-sidebar.figma .topics-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#claude-mindmap-sidebar.figma .topics-container::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 0px;
+}
+
+/* Figma主题列表样式 */
+#claude-mindmap-sidebar.figma .topics-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 0;
+}
+
+/* Figma主题卡片样式 - 添加描边，统一间距 */
+#claude-mindmap-sidebar.figma .topic-node {
+    background: #FFFBEB; /* 默认米黄色背景 - 会被下面的主题色覆盖 */
+    border: 1px solid #FEF3C7; /* 添加中等深度的描边 */
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    margin-bottom: 10px; /* 主题框到用户问题框的间距统一为10px */
+}
+
+/* 6种主题背景色系 - 调换蓝色和红色位置，颜色再浅一半，添加中等深度描边 */
+#claude-mindmap-sidebar.figma .topic-node[data-topic-type="concept"] {
+    background: #FFFEF7; /* 米黄色系 - 更浅 */
+    border-color: #FEF3C7; /* 中等深度描边 */
+}
+
+#claude-mindmap-sidebar.figma .topic-node[data-topic-type="technical"] {
+    background: #FAFAFF; /* 紫色系 - 更浅 */
+    border-color: #EDE9FE; /* 中等深度描边 */
+}
+
+#claude-mindmap-sidebar.figma .topic-node[data-topic-type="analysis"] {
+    background: #F6FEFA; /* 绿色系 - 更浅 */
+    border-color: #D1FAE5; /* 中等深度描边 */
+}
+
+#claude-mindmap-sidebar.figma .topic-node[data-topic-type="reference"] {
+    background: #FFF8F8; /* 红色系 - 更浅 */
+    border-color: #FEE2E2; /* 中等深度描边 */
+}
+
+#claude-mindmap-sidebar.figma .topic-node[data-topic-type="discussion"] {
+    background: #F5F9FF; /* 蓝色系 - 更浅 */
+    border-color: #DBEAFE; /* 中等深度描边 */
+}
+
+#claude-mindmap-sidebar.figma .topic-node[data-topic-type="creative"] {
+    background: #FFFBF8; /* 橙色系 - 更浅 */
+    border-color: #FFEDE1; /* 中等深度描边 */
+}
+
+/* 悬停效果 - 保持原色不变 */
+#claude-mindmap-sidebar.figma .topic-node[data-topic-type="concept"]:hover {
+    background: #FFFEF7;
+}
+
+#claude-mindmap-sidebar.figma .topic-node[data-topic-type="technical"]:hover {
+    background: #FAFAFF;
+}
+
+#claude-mindmap-sidebar.figma .topic-node[data-topic-type="analysis"]:hover {
+    background: #F6FEFA;
+}
+
+#claude-mindmap-sidebar.figma .topic-node[data-topic-type="reference"]:hover {
+    background: #FFF8F8;
+}
+
+#claude-mindmap-sidebar.figma .topic-node[data-topic-type="discussion"]:hover {
+    background: #F5F9FF;
+}
+
+#claude-mindmap-sidebar.figma .topic-node[data-topic-type="creative"]:hover {
+    background: #FFFBF8;
+}
+
+#claude-mindmap-sidebar.figma .topic-node.active {
+    background: #f0f9ff;
+    border-color: #3b82f6;
+}
+
+/* Figma主题标题样式 - 完全参考默认模式 */
+#claude-mindmap-sidebar.figma .topic-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+#claude-mindmap-sidebar.figma .topic-title {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 15px;
+    color: #000000; /* 黑色字体 */
+    flex: 1;
+    line-height: 1.4;
+}
+
+#claude-mindmap-sidebar.figma .topic-icon {
+    margin-right: 8px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    color: inherit;
+}
+
+#claude-mindmap-sidebar.figma .topic-icon i {
+    font-size: 16px;
+}
+
+#claude-mindmap-sidebar.figma .topic-content {
+    margin-top: 8px;
+}
+
+#claude-mindmap-sidebar.figma .topic-summary {
+    font-size: 13px;
+    color: #000000; /* 黑色字体 */
+    line-height: 1.5;
+    margin-top: 8px;
+}
+
+/* 消息包装器 - 横线和用户问题框在同一行 */
+#claude-mindmap-sidebar.figma .message-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    gap: 8px;
+}
+
+/* 圆角短横线前缀 - 在用户问题框外面，水平对齐 */
+#claude-mindmap-sidebar.figma .message-prefix {
+    display: inline-block;
+    width: 8px;
+    height: 2px;
+    background-color: #6b7280;
+    border-radius: 1px;
+    flex-shrink: 0;
+}
+
+/* 独立的用户问题框 - 参考默认模式但保持独立性 */
+#claude-mindmap-sidebar.figma .message-card {
+    padding: 8px 12px;
+    background: #f9fafb;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 13px;
+    position: relative;
+    color: #000000; /* 黑色字体 */
+    border: none; /* 默认无描边 */
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    flex: 1;
+}
+
+/* Figma模式图标和文字样式 - 完全参考默认模式 */
+#claude-mindmap-sidebar.figma .message-icon {
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    color: inherit;
+}
+
+#claude-mindmap-sidebar.figma .message-icon i {
+    font-size: 12px;
+}
+
+#claude-mindmap-sidebar.figma .message-text {
+    flex: 1;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 选中状态的用户问题框 - 中等深度颜色，无边框，保持原字体重量 */
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="concept"] .message-card.current {
+    background: #FEF3C7;
+}
+
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="technical"] .message-card.current {
+    background: #EDE9FE;
+}
+
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="analysis"] .message-card.current {
+    background: #D1FAE5;
+}
+
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="reference"] .message-card.current {
+    background: #FEE2E2;
+}
+
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="discussion"] .message-card.current {
+    background: #DBEAFE;
+}
+
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="creative"] .message-card.current {
+    background: #FFEDE1;
+}
+
+/* 每个主题的最后一个用户问题wrapper底部有间距 */
+#claude-mindmap-sidebar.figma .message-wrapper.last-message {
+    margin-bottom: 16px;
+}
+
+/* 移除所有CSS连接线，改用JS实现 */
+
+/* 横线的主题色 - 最深的颜色 */
+#claude-mindmap-sidebar.figma .message-prefix[data-topic-type="concept"] {
+    background-color: #F59E0B;
+}
+
+#claude-mindmap-sidebar.figma .message-prefix[data-topic-type="technical"] {
+    background-color: #8B5CF6;
+}
+
+#claude-mindmap-sidebar.figma .message-prefix[data-topic-type="analysis"] {
+    background-color: #10B981;
+}
+
+#claude-mindmap-sidebar.figma .message-prefix[data-topic-type="reference"] {
+    background-color: #DD6060;
+}
+
+#claude-mindmap-sidebar.figma .message-prefix[data-topic-type="discussion"] {
+    background-color: #3B82F6;
+}
+
+#claude-mindmap-sidebar.figma .message-prefix[data-topic-type="creative"] {
+    background-color: #F69A5C;
+}
+
+/* 用户问题框的花里胡哨背景色 - 默认最浅颜色，悬停中等深度 */
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="concept"] .message-card {
+    background: #FFFBEB;
+}
+
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="concept"] .message-card:hover {
+    background: #FEF3C7;
+}
+
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="technical"] .message-card {
+    background: #F5F3FF;
+}
+
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="technical"] .message-card:hover {
+    background: #EDE9FE;
+}
+
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="analysis"] .message-card {
+    background: #ECFDF5;
+}
+
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="analysis"] .message-card:hover {
+    background: #D1FAE5;
+}
+
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="reference"] .message-card {
+    background: #FFF0F0;
+}
+
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="reference"] .message-card:hover {
+    background: #FEE2E2;
+}
+
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="discussion"] .message-card {
+    background: #EAF3FF;
+}
+
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="discussion"] .message-card:hover {
+    background: #DBEAFE;
+}
+
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="creative"] .message-card {
+    background: #FFF6F1;
+}
+
+#claude-mindmap-sidebar.figma .message-wrapper[data-topic-type="creative"] .message-card:hover {
+    background: #FFEDE1;
+}
+
+/* 移除所有连接线样式 */
+
+/* 移除message-item相关样式（这些是旧的布局样式） */
+
+#claude-mindmap-sidebar.figma .message-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    color: inherit;
+}
+
+#claude-mindmap-sidebar.figma .message-icon i {
+    font-size: 14px;
+}
+
+#claude-mindmap-sidebar.figma .message-text {
+    flex: 1;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Figma加载状态 */
+#claude-mindmap-sidebar.figma .loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 30px;
+    color: #6b7280;
+}
+
+#claude-mindmap-sidebar.figma .loading-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid #f3f4f6;
+    border-top: 3px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+#claude-mindmap-sidebar.figma .loading-text {
+    font-size: 16px;
+    color: #000000;
+    font-weight: 500;
+}
+
+/* Figma空状态 */
+#claude-mindmap-sidebar.figma .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 30px;
+    text-align: center;
+    color: #6b7280;
+}
+
+#claude-mindmap-sidebar.figma .empty-icon {
+    font-size: 56px;
+    margin-bottom: 20px;
+    opacity: 0.6;
+}
+
+#claude-mindmap-sidebar.figma .empty-text {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #000000;
+}
+
+#claude-mindmap-sidebar.figma .empty-subtext {
+    font-size: 14px;
+    color: #000000;
+    line-height: 1.5;
+}
+
+/* Figma底部进度条 */
+#claude-mindmap-sidebar.figma .sidebar-footer {
+    padding: 24px;
+    border-top: 1px solid #e5e7eb;
+    background: #ffffff;
+    flex-shrink: 0;
+}
+
+#claude-mindmap-sidebar.figma .progress-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#claude-mindmap-sidebar.figma .progress-text {
+    font-size: 14px;
+    color: #000000;
+    text-align: center;
+    font-weight: 500;
+}
+
+#claude-mindmap-sidebar.figma .progress-bar {
+    height: 6px;
+    background: #f3f4f6;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+#claude-mindmap-sidebar.figma .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #10b981);
+    border-radius: 6px;
+    transition: width 0.4s ease;
+    width: 0%;
+}
+
+/* 失败通知 - Figma样式 */
+#claude-mindmap-sidebar.figma .failure-notification {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+#claude-mindmap-sidebar.figma .failure-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+#claude-mindmap-sidebar.figma .failure-icon {
+    font-size: 18px;
+    color: #ef4444;
+}
+
+#claude-mindmap-sidebar.figma .failure-title {
+    font-weight: 600;
+    color: #000000;
+    font-size: 15px;
+}
+
+#claude-mindmap-sidebar.figma .failure-reason {
+    font-size: 14px;
+    color: #000000;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+#claude-mindmap-sidebar.figma .retry-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#claude-mindmap-sidebar.figma .retry-btn:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+#claude-mindmap-sidebar.figma .retry-icon {
+    font-size: 14px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    #claude-mindmap-sidebar.figma {
+        width: 100vw;
+        right: -100vw;
+    }
+    
+    #claude-mindmap-sidebar.figma.visible {
+        right: 0;
+    }
+}

@@ -43,6 +43,17 @@ const AI_CONFIGS = {
 let CURRENT_PROVIDER = 'kimi';
 let USER_CONFIG = null;
 
+// 获取默认API密钥（简单混淆）
+function getDefaultApiKey() {
+    try {
+        // Base64编码的默认密钥
+        return atob('c2stdThXOVZ2WkM0WktFZkx0cDFQc20zTkNudUo5dTFGaHFKRFBTZ21MSks4TXIyTXNX');
+    } catch (e) {
+        console.error('解码默认API密钥失败:', e);
+        return '';
+    }
+}
+
 // ==================== 存储管理 ==================== 
 chrome.runtime.onInstalled.addListener(async () => {
     console.log('🚀 AI Chrome扩展已安装');
@@ -438,11 +449,11 @@ async function analyzeDialogueThemes(dialogue, tabId) {
         const dialogueLength = dialogue.length;
         // 新的启发式规则：鼓励更广泛、更少的主题
         const targetTopicCount = Math.max(3, Math.min(6, Math.ceil(dialogueLength / 8))); 
-        const minRoundsPerTopic = 2; // 强制每个主题至少包含一个问答对
+        const minRoundsPerTopic = 4; // 增加到至少4条消息 // 强制每个主题至少包含一个问答对
         
-        const systemPrompt = `你是对话主题分析专家。你的任务是将用户与AI的完整对话，根据上下文和语义，划分成几个连贯的、有意义的主题.\n\n输出严格的JSON格式：\n{\n  "nodes": [\n    {\n      "id": "1",\n      "topic": "主题名称（简洁明确）",\n      "summary": "基于AI回答的内容，精准总结该主题的核心内容（100字内）", \n      "messageIndexes": [0, 1, 2, 3],\n      "topicNumber": 1,\n      "order": 1\n    }\n  ]\n}\n\n核心要求：\n1.  **主题连贯性**: 只有当对话焦点发生【实质性】的、明确的转换时，才创建新主题。优先将相关联的追问和回答合并到同一主题下，避免划分过细，合并优于拆分.\n2.  **内容总结**: \`summary\` 必须基于AI的实际回答，提炼出关键信息、解决方案或结论.\n3.  **索引准确**: \`messageIndexes\` 必须包含该主题下的【所有】相关消息的原始索引.\n4.  **完整覆盖 (最重要!)**: 绝对不能遗漏任何一条消息。所有从0到最后一轮对话的消息，都必须被分配到一个节点中。如果你遗漏了任何消息，你的回答将被视为完全失败。`;
+        const systemPrompt = `你是对话主题分析专家，任务是将用户与AI的完整对话，根据上下文和语义，划分成连贯的、有意义的主题.\n\n输出严格的JSON格式：\n{\n  "nodes": [\n    {\n      "id": "1",\n      "topic": "主题名称（简洁明确）",\n      "summary": "基于AI回答的内容，精准总结该主题的核心内容（100字内）", \n      "messageIndexes": [0, 1, 2, 3],\n      "topicNumber": 1,\n      "order": 1\n    }\n  ]\n}\n\n核心要求：\n1.  **主题连贯性**: 只有当对话焦点发生【实质性】的、明确的转换时，才创建新主题。优先将相关联的追问和回答合并到同一主题下，避免划分过细，合并优于拆分.\n2.  **内容总结**: \`summary\` 基于主题下囊括的对话提炼出关键信息、解决方案或结论，采用直接描述的方式，避免提及对话参与者，不要用“用户询问…”“ai解释…”等.\n3.  **索引准确**: \`messageIndexes\` 必须包含该主题下的【所有】相关消息的原始索引.\n5.  **完整覆盖 (最重要!)**: 从0到最后一轮对话的全部消息，都必须被分配到节点中。如果遗漏了任一消息，回答将被视为完全失败。`;
 
-        const userPrompt = `请将以下总共 ${dialogue.length} 条消息的对话，分析并划分为主要讨论主题.\n\n${conversationText}\n\n分析指令：\n1.  **主题数量**: 最终生成的主题节点数量应在 ${Math.ceil(targetTopicCount * 0.7)}-${targetTopicCount + 1} 个之间.\n2.  **主题最小长度**: 每个主题节点（node）必须至少包含 ${minRoundsPerTopic} 条消息.\n3.  **严格遵循JSON格式**，并严格遵守系统指令中的【完整覆盖】要求，确保所有消息都被分配。`;
+        const userPrompt = `请分析以下对话并划分主题：\n\n${conversationText}\n\n分析指令：\n1.  **主题数量**: 最终生成的主题节点数量应在 ${Math.ceil(targetTopicCount * 0.6)}-${Math.ceil(targetTopicCount * 0.8)} 个之间，倾向于生成更少但更实质的主题.\n2.  **主题最小长度**: 每个主题节点（node）必须至少包含 ${minRoundsPerTopic} 条消息.\n3.  **合并优先**: 尽量避免单个问答对独立成为一个主题，如果**相邻的对话内容**在语义上相关或都属于同一个用户意图目标，应该合并到同一个主题中.\n4.  **严格遵循JSON格式**，并严格遵守系统指令中的【完整覆盖】要求，确保所有消息都被分配。`;
 
         return await smartAIProxy(systemPrompt, userPrompt, dialogue, tabId, processedDialogue.userMessageMapping);
 
@@ -523,10 +534,21 @@ async function smartAIProxy(systemPrompt, userPrompt, dialogue, tabId, userMessa
     console.log(`🤖 使用 ${config.name} 进行AI分析...`);
     console.log(`📋 系统提示长度: ${systemPrompt.length}, 用户提示长度: ${userPrompt.length}`);
     
-    // 检查API密钥
+    // 检查API密钥，如果没有配置就使用默认密钥
     if (!config.apiKey || config.apiKey === 'YOUR_API_KEY_HERE' || config.apiKey.trim() === '') {
-        console.log('⚠️ API密钥未配置，使用问题导航模式');
-        return generateQuestionNavigator(dialogue, tabId, 'API密钥未配置，请在设置页面配置API密钥');
+        if (CURRENT_PROVIDER === 'kimi') {
+            const defaultKey = getDefaultApiKey();
+            if (defaultKey) {
+                console.log('🔑 使用默认API密钥');
+                config.apiKey = defaultKey;
+            } else {
+                console.log('⚠️ API密钥未配置，使用问题导航模式');
+                return generateQuestionNavigator(dialogue, tabId, 'API密钥未配置，请在设置页面配置API密钥');
+            }
+        } else {
+            console.log('⚠️ API密钥未配置，使用问题导航模式');
+            return generateQuestionNavigator(dialogue, tabId, 'API密钥未配置，请在设置页面配置API密钥');
+        }
     }
     
     // 检查API端点

@@ -19,7 +19,7 @@
   "options_page": "settings.html",
   "content_scripts": [
     {
-      "matches": ["*://*.claude.ai/*"],
+      "matches": ["*://*.claude.ai/*", "*://chatgpt.com/*", "*://*.openai.com/*"],
       "js": ["content.js"],
       "css": ["sidebar.css"],
       "run_at": "document_end"
@@ -27,6 +27,8 @@
   ],
   "host_permissions": [
     "*://*.claude.ai/*",
+    "*://chatgpt.com/*",
+    "*://*.openai.com/*",
     "https://api.openai.com/*",
     "https://api.anthropic.com/*", 
     "https://api.moonshot.cn/*",
@@ -34,7 +36,18 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["mermaid.min.js", "settings.html", "settings.js", "sidebar.css"],
+      "resources": [
+        "mermaid.min.js", 
+        "settings.html", 
+        "settings.js", 
+        "sidebar.css", 
+        "sidebar-figma.css", 
+        "icons/*.svg",
+        "adapters/base-adapter.js",
+        "adapters/claude-adapter.js",
+        "adapters/chatgpt-adapter.js",
+        "shared/sidebar.js"
+      ],
       "matches": ["<all_urls>"]
     }
   ]
