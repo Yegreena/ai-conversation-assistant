@@ -42,4 +42,4 @@ coverage/
 # Chrome 扩展打包文件
 *.crx
 *.pem
-key.pem
+key.pemCLAUDE.md
